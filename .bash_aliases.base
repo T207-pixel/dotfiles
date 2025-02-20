@@ -1,0 +1,53 @@
+# Default from .bashrc, never used in cli
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
+alias dirs='dirs -v'
+
+# diff colored
+alias diff='diff --color'
+
+# grep colored
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# ls
+alias ls='ls --color=auto'
+alias ll='ls -lFh --time-style="+%d-%m-%Y %H:%M"' # F -shows / with dirs and * with executables
+alias llR='ll -R'       # R - recursevly show inner dirs
+alias ll.='ll -a'
+alias l.='ls -ldF .*'   # d - list directories themselves, not their contents. Show only hidden files in current directory.
+alias lls='ll -t'       # t - sorts files by modification date.
+alias llsr='lls -r'     # r - makes revers output
+alias llS='ll -S'       # S - sort files by size. Biggest file is at the top
+alias llSr='llS -r'     # Smallest file is at the top
+
+# Transfering
+alias ..='cd ..'
+alias .2='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
+alias .5='cd ../../../../..'
+
+# Paths
+alias aos='cd ~/Programming/mephi/aos'
+alias linux='cd /home/tim/Programming/linuxLessons'
+
+# Better readability and more informal
+alias mount='mount | column -t'   # Display in columns view 
+alias jb='jobs -l'  # Show pid
+
+# Shorten forms
+alias g='git'
+alias c='clear'
+
+# Safety
+# For deleting root
+alias rm='rm -I --preserve-root' # I - switchs on interactive mode. --pre* - safety from removing /
+# For changing rules
+alias chown='chown --preserve-root'
+alias chmod='chmod --preserve-root'
+alias chgrp='chgrp --preserve-root'
+
+# Always forget to type sudo
+alias apt='sudo apt'

@@ -1,0 +1,70 @@
+#!/bin/bash
+
+set -ex
+
+# Launchs in working directory (dotfiles)
+# Creates array with all files in current project with name *.base (for ln/ linking)
+# Creates array with all files without *.base (for mv/ backup)
+init_config_file_arrs() {
+    # Collect all hidden files into array in project dir.
+    # They will have *.base endings.
+    config_files_base=$(ls -a -1 ${dotfiles_dir_path} | tail +3 | egrep "^\." | egrep -v ".git")
+    config_files_base=($config_files_base) # Makes workable separator instead of '\n'
+
+    # Create new array without *.base endings 
+    config_files_real=()
+    for file in "${config_files_base[@]}"
+    do
+        real_file="${file%.base}"
+        config_files_real+=("${real_file}")
+    done
+}
+
+# Moves all specified files (which contains in project dotfiles, but without .base ending) in ~/backup_config_dir
+backup() {
+    local config_file=$1
+    if [ -f ~/${config_file} ]
+    then
+        if [[ ${config_file} != ".tmux.conf" ]]
+        then
+            mv ~/${config_file} backup_config_dir
+            echo "File ${config_file} was successfully moved in backup_config_dir"
+        fi
+    else
+        echo "File ${config_file} doesn't present in dir"
+    fi    
+}
+
+### Script execution ###
+dotfiles_dir_path=$(pwd)
+
+dotfiles_dir=$(basename $PWD) # only project dirname
+
+if [[ ${dotfiles_dir} != "dotfiles" ]]
+then
+    echo "Run this script only from dir dotfiles"
+    exit 0
+fi
+
+cd $HOME
+mkdir backup_config_dir
+init_config_file_arrs
+
+# Backup old config
+for config in "${config_files_real[@]}"
+do
+    backup ${config}
+done
+
+# Create links
+# Link for .tmux.conf is not created, because it has to 
+cd ${dotfiles_dir_path}
+tmux_dir=$(cd $HOME/.tmux && pwd)
+for config in "${config_files_base[@]}"
+do
+    if [[ ${config} != ".tmux.conf.base" ]]
+    then
+        real_config_name="${config%.base}"
+        ln -s $(pwd)/${config} ~/${real_config_name}
+    fi
+done

@@ -8,3 +8,6 @@ Recomended:
 1. git clone in home dir.
 2. Backup all original configs.
 3. Make links from previously real configs to  ~/dotfiles/*.base (config)
+
+ln -s ~/dotfiles/.git.base ~/.gitconfig
+And so on

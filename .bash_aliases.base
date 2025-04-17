@@ -51,3 +51,6 @@ alias chgrp='chgrp --preserve-root'
 
 # Always forget to type sudo
 alias apt='sudo apt'
+
+# Run commands
+alias bebra='/home/tim/Downloads/Bebra.AppImage &>/dev/null &'

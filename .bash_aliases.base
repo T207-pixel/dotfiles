@@ -16,8 +16,9 @@ alias ls='ls --color=auto'
 alias ll='ls -lFh --time-style="+%d-%m-%Y %H:%M"' # F -shows / with dirs and * with executables
 alias llR='ll -R'       # R - recursevly show inner dirs
 alias ll.='ll -a'
-alias l.='ls -ldF .*'   # d - list directories themselves, not their contents. Show only hidden files in current directory.
+alias l.='ls -ldF .*'   # Show only hidden files in current directory.
 alias lls='ll -t'       # t - sorts files by modification date.
+alias lsd='ls -ld'      # d - list directories themselves, not their contents.
 alias llsr='lls -r'     # r - makes revers output
 alias llS='ll -S'       # S - sort files by size. Biggest file is at the top
 alias llSr='llS -r'     # Smallest file is at the top

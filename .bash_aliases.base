@@ -55,3 +55,4 @@ alias apt='sudo apt'
 
 # Run commands
 alias bebra='/home/tim/Downloads/Bebra.AppImage &>/dev/null &'
+alias vpn='cd /etc/openvpn/client/config'
